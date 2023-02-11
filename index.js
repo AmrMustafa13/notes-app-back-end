@@ -1,6 +1,7 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const notes = require("./routes/notes");
+const cors = require("cors");
 
 const connectDB = require("./config/db");
 
@@ -9,6 +10,8 @@ dotenv.config({ path: "./config/config.env" });
 const app = express();
 
 app.use(express.json());
+
+app.use(cors());
 
 app.use("/api/v1/notes", notes);
 

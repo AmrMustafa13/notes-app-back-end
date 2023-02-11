@@ -3,11 +3,11 @@ const Note = require("../models/Note");
 // get all notes
 const getNotes = async (req, res) => {
   try {
-    const notes = await Note.find({});
+    const notes = await Note.find({}).sort({ createdAt: "desc" });
     res.json(notes);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: "Server Error" });
+    res.status(500).json({ message: error.message });
   }
 };
 
@@ -21,7 +21,7 @@ const getNote = async (req, res) => {
     res.json(note);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: "Server Error" });
+    res.status(500).json({ message: error.message });
   }
 };
 
@@ -32,7 +32,7 @@ const createNote = async (req, res) => {
     res.status(201).json(note);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: "Server Error" });
+    res.status(500).json({ message: error.message });
   }
 };
 
@@ -49,7 +49,7 @@ const updateNote = async (req, res) => {
     res.json(note);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: "Server Error" });
+    res.status(500).json({ message: error.message });
   }
 };
 
@@ -64,7 +64,7 @@ const deleteNote = async (req, res) => {
     res.json({ message: "Note removed" });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: "Server Error" });
+    res.status(500).json({ message: error.message });
   }
 };
 
