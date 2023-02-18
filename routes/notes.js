@@ -1,4 +1,5 @@
 const express = require("express");
+const requireAuth = require("../middlewares/requireAuth");
 
 const {
   getNotes,
@@ -9,6 +10,8 @@ const {
 } = require("../controllers/notes");
 
 const router = express.Router();
+
+router.use(requireAuth);
 
 // @route   GET api/notes
 // @desc    Get all notes
