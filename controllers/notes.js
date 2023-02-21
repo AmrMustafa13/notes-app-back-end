@@ -2,8 +2,12 @@ const Note = require("../models/Note");
 
 // get all notes
 const getNotes = async (req, res) => {
+  const userId = req.user._id;
+
   try {
-    const notes = await Note.find({}).sort({ createdAt: "desc" });
+    const notes = await Note.find({
+      userId,
+    }).sort({ createdAt: "desc" });
     res.json(notes);
   } catch (error) {
     console.error(error);
@@ -28,7 +32,8 @@ const getNote = async (req, res) => {
 // create new note
 const createNote = async (req, res) => {
   try {
-    const note = await Note.create(req.body);
+    const userId = req.user._id;
+    const note = await Note.create({ ...req.body, userId });
     res.status(201).json(note);
   } catch (error) {
     console.error(error);

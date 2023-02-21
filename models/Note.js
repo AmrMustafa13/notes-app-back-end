@@ -1,6 +1,10 @@
 const mongoose = require("mongoose");
 
 const NoteSchema = new mongoose.Schema({
+  userId: {
+    type: String,
+    required: true,
+  },
   title: {
     type: String,
     required: [true, "Please add a title"],
