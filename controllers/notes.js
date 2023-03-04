@@ -48,8 +48,8 @@ const updateNote = async (req, res) => {
     if (!note) {
       return res.status(404).json({ message: "Note not found" });
     }
-    note.title = req.body.title || note.title;
-    note.description = req.body.description || note.description;
+    note.title = req.body.title;
+    note.description = req.body.description;
     await note.save();
     res.json(note);
   } catch (error) {
