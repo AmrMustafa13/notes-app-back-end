@@ -3,7 +3,6 @@ const Note = require("../models/Note");
 // get all notes
 const getNotes = async (req, res) => {
   const userId = req.user._id;
-
   try {
     const notes = await Note.find({
       userId,
@@ -50,6 +49,7 @@ const updateNote = async (req, res) => {
     }
     note.title = req.body.title;
     note.description = req.body.description;
+    note.color = req.body.color;
     await note.save();
     res.json(note);
   } catch (error) {
